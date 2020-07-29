@@ -9,8 +9,7 @@ if micState == 'on':
 	wordlist = phrase.split()
 	word = wordlist[len(wordlist) - 1]
 elif micState == 'off':
-	key = '274BZIPS'
-	url = 'https://random-word-api.herokuapp.com/word?key=' + key + '&number=1'
+	url = 'https://random-word-api.herokuapp.com/word?number=1'
 	response = requests.get(url)
 	json = response.json()
 	word = json[0]
