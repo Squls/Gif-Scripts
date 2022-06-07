@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-import pyglet, requests, random
+import pyglet, requests, random, os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 print('Mic word on or off?')
 micState = input()
 if micState == 'on':
@@ -13,10 +17,12 @@ elif micState == 'off':
 	response = requests.get(url)
 	json = response.json()
 	word = json[0]
-url = 'http://api.giphy.com/v1/gifs/search?q=' + word + '&api_key=dc6zaTOxFJmzC&limit=100'
+apiKey = os.getenv('GIPHYKEY')
+url = 'http://api.giphy.com/v1/gifs/search?q=' + word + '&api_key=' + apiKey + '&limit=100'
 response = requests.get(url)
 json = response.json()
 count = len(json['data'])
+print(count)
 rdm = random.randrange(0,count)
 gifUrl = json['data'][rdm]['images']['fixed_width']['url']
 gifData = requests.get(gifUrl)
