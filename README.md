@@ -1,3 +1,3 @@
-# GipHat
+# Gif Scripts
 
 WIP
